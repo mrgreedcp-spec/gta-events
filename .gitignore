@@ -1,0 +1,13 @@
+# 生成物：GitHub Actions 每次重新生成
+site/
+site.tmp/
+构建日志.md
+校验报告.md
+校验明细.csv
+# 每天自动下载的数据（Actions 里会重新下载）
+data/tpl/
+data/ical/
+# 本地私人文件
+邮件草稿_市政府开放数据.md
+__pycache__/
+.DS_Store

@@ -1,0 +1,54 @@
+# 每天多伦多时间早上 6 点左右重建并发布到 GitHub Pages。
+# 自动下载：图书馆 feed、分馆信息、Visit Mississauga 日历。
+# 市政府日历不能自动下载（接口拦截脚本），用仓库里最新的 data/city/*.json；每周手动导出后提交即可。
+name: build-site
+
+on:
+  schedule:
+    - cron: "15 10 * * *"   # UTC 10:15 ≈ 多伦多 06:15（夏令时）/ 05:15（冬令时）
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["data/city/**", "data/manual/**", "tools/**", ".github/workflows/**"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Fetch previous build stats (for the drop guard)
+        run: |
+          mkdir -p site
+          curl -fsSL "${{ steps.pages.outputs.base_url }}/build_meta.json" -o site/build_meta.json \
+            || { echo "no previous deployment yet"; rm -f site/build_meta.json; }
+      - name: Build
+        run: python tools/build.py --fetch --base-url "${{ steps.pages.outputs.base_url }}"
+      - name: Validate
+        run: python tools/validate.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

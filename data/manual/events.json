@@ -1,0 +1,24 @@
+[
+  {
+    "id": "manual-christmas-canadian-pet-expo-2026",
+    "name": "Christmas Canadian Pet Expo",
+    "start": "2026-11-21T10:00:00",
+    "end": "2026-11-22T16:00:00",
+    "place_name": "The International Centre",
+    "street": "6900 Airport Road",
+    "city": "Mississauga",
+    "region": "ON",
+    "postal": "L4V 1E8",
+    "categories": ["Pets", "Trade Show / Expo", "Family"],
+    "topics": ["宠物", "展会", "亲子·儿童"],
+    "free": false,
+    "price_low": 15,
+    "price_high": 50,
+    "offer_url": "https://unitytickets.com/se/CPE112126/Ticket",
+    "source_url": "https://canadianpetexpo.ca/plan-your-visit",
+    "source_name": "Canadian Pet Expo",
+    "organizer": "Canadian Pet Expo",
+    "description": "A two-day holiday pet show across three indoor halls, with a dog show, cat show, grooming arena, main stage, Santa Paws photos and a holiday marketplace. Leashed, vaccinated pets are welcome. Open Saturday 10 AM–5 PM and Sunday 10 AM–4 PM; last admission one hour before closing. Free parking.",
+    "verified": "2026-09-30：日期、开放时间、地址、宠物规定来自 canadianpetexpo.ca/plan-your-visit；票价（成人 $22、老人/儿童 $15、家庭 $50、周末通票 $30）来自官网首页；购票链接来自官网首页。"
+  }
+]
