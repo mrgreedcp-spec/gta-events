@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["data/city/**", "data/manual/**", "tools/**", ".github/workflows/**"]
+    paths: ["data/city/**", "data/manual/**", "static/**", "tools/**", ".github/workflows/**"]
 
 permissions:
   contents: read

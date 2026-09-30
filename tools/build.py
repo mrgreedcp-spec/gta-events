@@ -244,6 +244,10 @@ def main():
         shutil.rmtree(out)
     (out / "assets").mkdir(parents=True)
     (out / "data").mkdir()
+    # static/ 里的文件原样放到网站根目录（例如 Google Search Console 的验证文件）
+    for f in sorted((ROOT / "static").glob("*")) if (ROOT / "static").is_dir() else []:
+        if f.is_file() and not f.name.startswith("."):
+            shutil.copy2(f, out / f.name)
     (out / "assets" / "site.css").write_text(render.CSS, encoding="utf-8")
     (out / "assets" / "app.js").write_text(render.APP_JS, encoding="utf-8")
     for e in events:
